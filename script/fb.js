@@ -6,7 +6,7 @@ function statusChangeCallback(response) {
     })
     .then(function (response) {
       localStorage.setItem("token", response.data.token);
-      window.location = "http://localhost:8080/home";
+      window.location = "http://localhost:8080/homepage";
       // window.location = "https://www.google.com";
       
     })
