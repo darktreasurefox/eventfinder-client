@@ -12,12 +12,11 @@
   </head>
   <body>
     <div id="fullscreen_bg" class="fullscreen_bg"/>
-    <div class="container">
+    <div class="container text-center">
       <form class="form-signin">
         <h1 class="form-signin-heading">EventO</h1>
         <h3 class="form-signin-heading">Your best tommorow event finder</h3>
-        <fb:login-button id="fb-login" scope="public_profile,email" onlogin="checkLoginState()">
-        </fb:login-button>
+        <div class="fb-login-button" data-width="300px" data-max-rows="1" data-size="large" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
         <div class="alert alert-danger" id = "alert" role="alert">503 Service Unavailable, The server is currently unavailable </div>
       </form>
     </div>
