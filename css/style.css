@@ -1,0 +1,56 @@
+body {
+  padding-top: 120px;
+  padding-bottom: 10px;
+  background-color: #eee;
+
+}
+
+.fullscreen_bg h1 {
+  font-family: 'Knewave', cursive;
+  font-size: 6em;
+}
+
+.fb-login {
+  
+}
+
+.btn 
+{
+ outline:0;
+ border:none;
+ border-top:none;
+ border-bottom:none;
+ border-left:none;
+ border-right:none;
+}
+.btn:focus
+{
+ outline:0;
+ -webkit-outline:0;
+ -moz-outline:0;
+}
+.fullscreen_bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-image: url('../img/event-background.jpg');
+  background-repeat:repeat;
+}
+.form-signin {
+  max-width:400px;
+  padding: 15px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+.form-signin .form-signin-heading, .form-signin {
+  margin-bottom: 10px;
+}
+
+.form-signin-heading {
+  color: #ffffff;
+  text-align: center;
+}
