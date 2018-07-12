@@ -18,9 +18,11 @@
         <h3 class="form-signin-heading">Your best tommorow event finder</h3>
         <fb:login-button id="fb-login" scope="public_profile,email" onlogin="checkLoginState()">
         </fb:login-button>
+        <div class="alert alert-danger" id = "alert" role="alert">503 Service Unavailable, The server is currently unavailable </div>
       </form>
     </div>
     <script src="./script/fb.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   </body>
 </html>

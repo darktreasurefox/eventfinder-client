@@ -11,9 +11,10 @@ function statusChangeCallback(response) {
       
     })
     .catch(function (error) {
-      console.log(error);
-    });
+      console.log('server down',error);
+        $('#alert').css("display","block")
 
+    })
   }
 }
 
