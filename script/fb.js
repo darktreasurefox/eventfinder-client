@@ -1,14 +1,14 @@
 function statusChangeCallback(response) {
   if (response.status === 'connected') {
     // testAPI();
-    axios.post('http://localhost:3000/users/login', {
+    axios.post('https://localhost:3000/users/login', {
       token: response.authResponse.accessToken
     })
     .then(function (response) {
       localStorage.setItem("token", response.data.token);
-      window.location = "http://localhost:8080/homepage.html";
+      window.location = "https://localhost:8080/homepage.html";
       // window.location = "https://www.google.com";
-      
+
     })
     .catch(function (error) {
       console.log('server down',error);
@@ -28,7 +28,9 @@ function checkLoginState() {
 window.fbAsyncInit = function() {
   FB.init({
     appId      : '2190548590958522',
-    // cookie     : true,  // enable cookies to allow the server to access 
+    // 275504929697389 --> app key dawi
+    // 2190548590958522 --> app key made
+    // cookie     : true,  // enable cookies to allow the server to access
     //                     // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.8' // use graph api version 2.8
