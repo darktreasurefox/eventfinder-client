@@ -1,7 +1,7 @@
 function statusChangeCallback(response) {
   if (response.status === 'connected') {
     // testAPI();
-    axios.post('http://localhost:3000/api/users/login', {
+    axios.post('http://localhost:3000/users/login', {
       token: response.authResponse.accessToken
     })
     .then(function (response) {
