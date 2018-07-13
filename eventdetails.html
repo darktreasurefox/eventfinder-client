@@ -17,8 +17,8 @@
       </nav>
     </div>
     <br><br><br><br>
-    <div id="event-list" class="container-fluid text-center bg-grey">
-      <div class="row text-center slideanim">
+    <div  class="container-fluid text-center bg-grey">
+      <div id="event-list" class="row text-center slideanim">
 
         <div class="col-sm-4 mt-5">
           <div class="thumbnail">
@@ -40,8 +40,16 @@
 
 
       <script>
-      $( ".event-list" ).append(
-          "<div class='col-sm-4 mt-5'><div class='thumbnail'><img src='https://images.unsplash.com/photo-1418075285575-c402f1f7340f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3ce07cf602251b0636efbf01bd723775&auto=format&fit=crop&w=800&q=60' alt='New York' width='400' height='300'><p><strong>New York</strong></p><p>We built New York</p><button class='btn btn-group-sm btn-info'>Details</button></div></div>" )
+
+      $( "#event-list" ).append(
+          `<div class='col-sm-4 mt-5'>
+            <div class='thumbnail'>
+              <img src='https://images.unsplash.com/photo-1418075285575-c402f1f7340f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3ce07cf602251b0636efbf01bd723775&auto=format&fit=crop&w=800&q=60' alt='New York' width='400' height='300'>
+              <p><strong>New York</strong></p>
+              <p>We built New York</p>
+              <button class='btn btn-group-sm btn-info'>Details</button><
+            /div>
+          </div>`)
       </script>
 
   </body>
