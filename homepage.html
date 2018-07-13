@@ -13,12 +13,19 @@
     <script>
         window.onload = function() {
             const token = localStorage.getItem("token")
-
-            if (token) {
-
-            } else {
-                // window.location.assign("http://localhost:8080/")
-            }
+            axios.post('http://localhost:3000/users/auth', {}, {
+              headers: {
+                 'token' : token
+              },
+            })
+            .then(function (response) {
+              if (response.status == "success") {
+                console.log("successlogin")
+              }
+            })
+            .catch(function (error) {
+              window.location.assign("http://localhost:8080/")
+            })
         }
 
         function searchEvent() {
@@ -29,6 +36,7 @@
             // console.log(`keyword: ${keyword}, location: ${location}`)
         }
     </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div>

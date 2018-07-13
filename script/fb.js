@@ -1,12 +1,12 @@
 function statusChangeCallback(response) {
   if (response.status === 'connected') {
-    // testAPI();
-    axios.post('https://localhost:3000/users/login', {
+    // testAPI() ;
+    axios.post('http://localhost:3000/users/login', {
       token: response.authResponse.accessToken
     })
     .then(function (response) {
       localStorage.setItem("token", response.data.token);
-      window.location = "https://localhost:8080/homepage.html";
+      window.location = "http://localhost:8080/homepage.html";
       // window.location = "https://www.google.com";
 
     })
