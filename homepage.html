@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html class="homepage">
+  <head>
+    <title>EventO - Event Finder For Tommorow</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <style>
+        html { background-size: cover;height: 100%; overflow: hidden; }
+        .homepage { background-image: url("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2891f249f4ef797292704c77ab664a59&auto=format&fit=crop&w=1950&q=80"); }
+        body { background-color: transparent; }
+        .navbar-nav li a {
+          line-height: 150px; height: 50px; padding-top: 0; }
+        .tableview th tr td {
+          border-bottom: 1px solid rgb(44, 44, 44);
+          text-align: left;
+          padding: 8px;
+        }
+       .tableview tr {
+          background-color: #f2f2f2
+        }
+    </style>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = function() {
+            const token = localStorage.getItem("token")
+            axios.post('http://localhost:3000/users/auth', {}, {
+              headers: {
+                 'token' : token
+              },
+            })
+            .then(function (response) {
+              if (response.status == "success") {
+                console.log("successlogin")
+              }
+            })
+            .catch(function (error) {
+              window.location.assign("http://localhost:8080/")
+            })
+        }
+
+        function showEvents(data) {
+          $("#event-list").show()
+          $("#event-list").prepend(`<h3 style="color:white">Events</h3>`)
+          let tHead = `
+          <th>
+            <tr>
+            <td>Event title</td>
+            <td>Venue</td>
+            <td>Time</td>
+            <tr>
+          </th>`
+          $("#event-table").append(tHead)
+          for (let i = 0; i < 5; i++) {
+            let newRow = $(`
+            <tr>
+              <td>${data.events[i].title}</td>
+              <td>${data.events[i].venue_name}</td>
+              <td>${data.events[i].start_time}</td>
+            </tr>
+            `)
+            $("#event-table").append(newRow)
+          }
+        }
+
+        function showTweets(data) {
+          $("#tweets-list").show()
+          $("#tweets-list").prepend(`<h3 style="color:white">Tweets</h3>`)
+          for (let i = 0; i < 5; i++) {
+            let newRow = $(`
+            <tr>
+              <td>${data.tweets.statuses[i].text}</td>
+              <td>${data.tweets.statuses[i].user.screen_name}</td>
+              <td>${data.tweets.statuses[i].created_at}</td>
+            </tr>
+            `)
+            $("#tweets-table").append(newRow)
+          }
+        }
+
+        function showWeather(data) {
+          $("#weather").show()
+          $("#weather").prepend(`<h3 style="color:white">Weather</h3>`)
+          let newRow = $(`
+            <tr>
+              <td>${data.location}</td>
+              <td>${data.summary}</td>
+              <td>${data.temperatureHigh}</td>
+            </tr>
+            `)
+          $("#weather-table").append(newRow)
+        }
+
+        function searchEvent(event) {
+          event.preventDefault();
+
+          console.log('test')
+          axios.post('http://localhost:3000/events', {
+            keywords: document.getElementById('input-keyword').value,
+            location: document.getElementById('input-location').value
+          }).then(function(response) {
+            console.log('response -->', response)
+            showEvents(response.data)
+
+            let cityName = response.data.events[0].city_name
+            let longitude = response.data.events[0].longitude
+            let latitude = response.data.events[0].latitude
+            axios.get(`http://localhost:3000/tweets?search=${cityName}`)
+              .then(function(tweetResponse) {
+                console.log('tweets -->', tweetResponse)
+                showTweets(tweetResponse.data)
+              })
+              .catch(function(err) {
+                console.error(err)
+              })
+            
+            axios.get(`http://localhost:3000/darksky?latitude=${latitude}&longitude=${longitude}`)
+              .then(function(weatherResp) {
+                console.log('weather -->', weatherResp)
+                showWeather(weatherResp.data)
+              })
+              .catch(function(err) {
+                console.error(err)
+              })
+
+          }).catch(function(err) {
+            console.error('error -->',err)
+          })
+        }
+    </script>
+  </head>
+  <body>
+    <div>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <a class="navbar-brand" href="#">Event O</a>
+          <ul class="navbar-nav mr-auto">
+            <span class="navbar-text">
+              Hello, User!
+            </span>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input id="input-keyword" type="text" class="form-control mr-sm-2" placeholder="keyword ..">
+            <input id="input-location" type="text" class="form-control mr-sm-2" placeholder="event location">
+            <button class="btn btn-warning my-2 my-sm-0" onclick="searchEvent(event)">Find Tommorow</button>
+          </form>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container" id="event-list">
+      <!-- <h3 style="color:white">Events</h3> -->
+      <table class="tableview" id="event-table">
+      </table>
+    </div>
+
+    <br>
+
+    <div class="container" id="tweets-list">
+      <!-- <h3 style="color:white">Tweets</h3> -->
+      <table class="tableview" id="tweets-table">
+      </table>
+    </div>
+
+    <br>
+
+    <div class="container" id="weather">
+      <!-- <h3 style="color:white">Weather</h3> -->
+      <table class="tableview" id="weather-table">
+      </table>
+    </div>
+
+    </div>
+  </body>
+</html>

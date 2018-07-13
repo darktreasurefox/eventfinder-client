@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html class="homepage">
+
+  <head>
+	  <title>EventO - Event Finder For Tommorow</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        window.onload = function() {
+            const token = localStorage.getItem("token")
+
+            if (token) {
+                
+            } else {
+                window.location.assign("http://localhost:8080/")
+            }
+        }
+    </script>
+  </head>
+
+  <body>
+    <div>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Event O</a>
+        <span class="navbar-text ">
+              Hi, User!
+        </span>
+      </nav>
+    </div>
+    <br><br><br><br>
+    <div  class="container-fluid text-center bg-grey">
+      <div id="event-list" class="row text-center slideanim">
+
+        <div class="col-sm-4 mt-5">
+          <div class="panel panel-primary">
+            <img src="https://images.unsplash.com/photo-1526285348874-b7ff025fff66?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2017359c544201918d84058df78b77d1&auto=format&fit=crop&w=1000&q=80" alt="Paris" width="400" height="300">
+            <p><strong>Paris</strong></p>
+            <p>Yes, we built Paris</p>
+            <button class="btn btn-group-sm btn-info">Details</button>
+          </div>
+        </div>
+
+        <div class="col-sm-4 mt-5">
+          <div class="thumbnail">
+            <img src="https://images.unsplash.com/photo-1418075285575-c402f1f7340f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3ce07cf602251b0636efbf01bd723775&auto=format&fit=crop&w=800&q=60" alt="New York" width="400" height="300">
+            <p><strong>New York</strong></p>
+            <p>We built New York</p>
+            <button class="btn btn-group-sm btn-info">Details</button>
+          </div>
+        </div>
+
+
+      <script>
+
+      $( "#event-list" ).append(
+          `<div class='col-sm-4 mt-5'>
+            <div class='thumbnail'>
+              <img src='https://images.unsplash.com/photo-1418075285575-c402f1f7340f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3ce07cf602251b0636efbf01bd723775&auto=format&fit=crop&w=800&q=60' alt='New York' width='400' height='300'>
+              <p><strong>New York</strong></p>
+              <p>We built New York</p>
+              <button class='btn btn-group-sm btn-info'>Details</button>
+            </div>
+          </div>`)
+      </script>
+
+  </body>
+</html>
