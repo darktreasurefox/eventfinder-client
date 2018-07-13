@@ -27,9 +27,7 @@ function checkLoginState() {
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId      : '2190548590958522',
-    // 275504929697389 --> app key dawi
-    // 2190548590958522 --> app key made
+    appId      : '275504929697389',
     // cookie     : true,  // enable cookies to allow the server to access
     //                     // the session
     xfbml      : true,  // parse social plugins on this page
